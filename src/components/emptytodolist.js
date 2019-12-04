@@ -1,14 +1,6 @@
 import React, { Component } from "react";
 import "../style/todoList.css";
 export class todolist extends Component {
-//   UNSAFE_componentWillReceiveProps(nextProps){
-//    if (nextProps.emptyTodosList.length>1) {
-//     if (nextProps.emptyTodosList!==this.props.emptyTodosList) {
-//         var input = document.querySelector(".todo-input input");
-//         input.focus();
-//     }
-//    }
-//   }
   addToTodos = (item, event) => {
     if (event.key === "Enter") {
       if (event.currentTarget.value === "") {
