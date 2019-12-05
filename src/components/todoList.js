@@ -1,19 +1,16 @@
 import React, { Component } from "react";
 
 export class todoList extends Component {
-  updateChecked = (id, event) => {
+  updateChecked = (index, event) => {
     event.stopPropagation();
     var tempArr = [...this.props.todos];
-    var index = tempArr.findIndex(item => {
-      return item.id === id;
-    });
     tempArr[index].checked = !tempArr[index].checked;
     this.props.updateChecked(tempArr);
   };
   render() {
     return (
       <div className="todo-list">
-        {this.props.todos.map(item => (
+        {this.props.todos.map((item,index) => (
           <div className="todo-item" key={item.id}>
             <div className="check">
               <label className="toggleButton">
@@ -21,7 +18,7 @@ export class todoList extends Component {
                   type="checkbox"
                   defaultChecked={item.checked}
                   onClick={event => {
-                    this.updateChecked(item.id, event);
+                    this.updateChecked(index, event);
                   }}
                 />
                 <div>

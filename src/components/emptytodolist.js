@@ -7,13 +7,16 @@ export class todolist extends Component {
         return alert("Please Add Some Text!");
       }
       this.props.addToTodos(item.id, event.currentTarget.value);
-      var input = document.querySelector(".todo-input input");
-      input.focus();
+      setTimeout(() => {
+        if (document.querySelector("#emptylist").firstChild) {
+          document.querySelector("#emptylist").firstChild.childNodes[0].focus();
+        }
+      }, 0);
     }
   };
   render() {
     return (
-      <div className="todo-list">
+      <div className="todo-list" id="emptylist">
         {this.props.emptyTodosList.map(item => (
           <div className="todo-input" key={item.id}>
             <input onKeyPress={event => this.addToTodos(item, event)} />
