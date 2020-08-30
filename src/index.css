@@ -1,18 +1,21 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
+:root {
+  --background-color: #ffffff;
+  --todo-color: #111111;
+  --todo-head-color: #6c2ad4;
+  --border-color: #111111;
+  --icon-color: #6c2ad4;
+  --icon-hover-color: #a26bfa;
+}
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: #1E2023;
-  font-family: 'Noto Sans', sans-serif;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+  background: var(--background-color);
+  font-family: "Noto Sans", sans-serif;
 }

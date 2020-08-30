@@ -1,39 +1,63 @@
-
 .todo-wrapper {
   width: 1150px;
   margin: 0 auto;
+  padding: 10px 0;
 }
-
-.todo-head {
-  display: flex;
-  align-items: center;
+.todo-head-wrapper {
   width: 100%;
   height: auto;
-  color: white;
+  box-shadow: 0 3px 10px 3px hsla(0, 0%, 69%, 0.19);
+}
+.todo-head {
+  width: 1150px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  color: rgb(0, 0, 0);
   justify-content: space-between;
-  border-bottom: 1px solid rgba(211, 211, 211, 0.301);
-  padding: 20px 0;
+  padding: 10px 0;
 }
 
 .todo-logo {
-  color: #FFD609;
+  color: var(--todo-head-color);
 }
 
 .add-todo {
-  width: auto;
-  padding: 5px 25px;
-  background: #56585A;
-  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  background: var(--background-color);
+  border-radius: 50%;
   cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 3px 10px 5px hsla(0, 0%, 69%, 0.19);
+  transition: 0.3s all;
+}
+.add-todo:hover span i svg {
+  fill: var(--icon-hover-color);
+}
+.add-todo span,
+.add-todo span i {
+  display: grid;
+  place-items: center;
 }
 
 .add-todo span i svg {
-  fill: white;
+  transition: 0.3s all;
+  fill: var(--icon-color);
 }
 
-@media only screen and (max-width:1170px){
-  .todo-wrapper{
+@media only screen and (max-width: 1170px) {
+  .todo-head-wrapper {
     width: 100%;
     padding: 0 15px;
+  }
+  .todo-wrapper {
+    width: 100%;
+    padding: 0 15px;
+  }
+  .todo-head {
+    width: 100%;
+    height: auto;
   }
 }

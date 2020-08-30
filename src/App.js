@@ -7,53 +7,62 @@ export class App extends Component {
     super(props);
     this.state = {
       todos: [],
-      emptyTodosList: []
+      emptyTodosList: [],
     };
+  }
+  componentDidMount() {
+    let todos = JSON.parse(localStorage.getItem("todos"));
+    if (todos && todos.length > 0) {
+      this.setState({
+        todos,
+      });
+    }
   }
   addEmptyList = () => {
     var id =
-      Math.random()
-        .toString(36)
-        .substring(2, 15) +
-      Math.random()
-        .toString(36)
-        .substring(2, 15);
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15);
     var tempObject = {
-      id
+      id,
     };
-    var tempArr = [...this.state.emptyTodosList];
-    tempArr.push(tempObject);
-    this.setState({ emptyTodosList: tempArr });
+    if (this.state.emptyTodosList.length <= 0) {
+      var tempArr = [];
+      tempArr.push(tempObject);
+      this.setState({ emptyTodosList: tempArr });
+    }
   };
   addToTodos = (id, value) => {
     var todo = {
       id,
       value,
-      checked: false
+      checked: false,
     };
-    var tempEmptyArray = [...this.state.emptyTodosList];
-    var removeEmptyListItem = tempEmptyArray.filter(item => {
-      return item.id !== id;
-    });
     var tempTodoArray = [...this.state.todos];
     tempTodoArray.push(todo);
+    localStorage.setItem("todos", JSON.stringify(tempTodoArray));
     this.setState({
-      emptyTodosList: removeEmptyListItem,
-      todos: tempTodoArray
+      emptyTodosList: [],
+      todos: tempTodoArray,
     });
   };
-  updateChecked = updatedArray => {
+  updateChecked = (updatedArray) => {
+    localStorage.setItem("todos", JSON.stringify(updatedArray));
     this.setState({ todos: updatedArray });
   };
   render() {
     return (
       <div className="todo">
-        <div className="todo-wrapper">
+        <div className="todo-head-wrapper">
           <div className="todo-head">
             <div className="todo-logo">
               <h1>Todo</h1>
             </div>
-            <div className="add-todo" onClick={this.addEmptyList}>
+            <div
+              className="add-todo"
+              onClick={() => {
+                this.addEmptyList();
+              }}
+            >
               <span>
                 <i>
                   <svg
@@ -68,6 +77,8 @@ export class App extends Component {
               </span>
             </div>
           </div>
+        </div>
+        <div className="todo-wrapper">
           <TodoList
             updateChecked={this.updateChecked}
             todos={this.state.todos}

@@ -6,20 +6,22 @@ export class todolist extends Component {
       if (event.currentTarget.value === "") {
         return alert("Please Add Some Text!");
       }
+      if (event.currentTarget.value.length > 250) {
+        alert("Words limit per todo exceeded");
+        return;
+      }
       this.props.addToTodos(item.id, event.currentTarget.value);
-      setTimeout(() => {
-        if (document.querySelector("#emptylist").firstChild) {
-          document.querySelector("#emptylist").firstChild.childNodes[0].focus();
-        }
-      }, 0);
     }
   };
   render() {
     return (
       <div className="todo-list" id="emptylist">
-        {this.props.emptyTodosList.map(item => (
+        {this.props.emptyTodosList.map((item) => (
           <div className="todo-input" key={item.id}>
-            <input onKeyPress={event => this.addToTodos(item, event)} />
+            <input
+              onKeyPress={(event) => this.addToTodos(item, event)}
+              autoFocus
+            />
           </div>
         ))}
       </div>
